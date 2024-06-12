@@ -14,18 +14,16 @@ const MenuSection = () => {
   return (
     <div className="space-y-2">
       <div>
-        <h2 className="text-2xl font-bold">Menu section</h2>
+        <h2 className="text-2xl font-bold">Menu</h2>
         <FormDescription>
-          Add the menu items that your restaurant serves, add the name and price
-          of the menu
+          Create your menu and give each item a name and a price
         </FormDescription>
       </div>
-
       <FormField
         control={control}
-        name="menuItem"
-        render={({ field }) => (
-          <FormItem className=" flex flex-col gap-2">
+        name="menuItems"
+        render={() => (
+          <FormItem className="flex flex-col gap-2">
             {fields.map((_, index) => (
               <MenuItemInput
                 index={index}
