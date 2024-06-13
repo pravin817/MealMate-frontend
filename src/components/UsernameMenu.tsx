@@ -14,7 +14,6 @@ import { Separator } from "./ui/separator";
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();
 
-  console.log(user);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center px-3 font-bold hover:text-orange-500 gap-2">
