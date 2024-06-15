@@ -33,7 +33,7 @@ export const useGetMyUser = () => {
   } = useQuery("fetchCurrentUser", getMyUserRequest);
 
   if (error) {
-    toast.error("Failed to fetch user" + Error.toString());
+    toast.error("Failed to fetch user " + Error.toString());
   }
 
   return { currentUser, isLoading };
