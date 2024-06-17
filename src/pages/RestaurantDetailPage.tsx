@@ -86,6 +86,36 @@ const RestaurantDetailPage = () => {
     });
   };
 
+  const decreseMenuItemQuantity = (cartItem: CartItem) => {
+    setCartItems((prevCartItems) => {
+      const existingCartItem = prevCartItems.find(
+        (item) => item._id === cartItem._id
+      );
+
+      if (!existingCartItem) {
+        return prevCartItems;
+      }
+
+      if (existingCartItem.quantity === 1) {
+        return prevCartItems.filter((item) => item._id !== cartItem._id);
+      }
+
+
+      const updatedCartItems = prevCartItems.map((item) =>
+        item._id === cartItem._id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+
+      sessionStorage.setItem(
+        `cartItems-${restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
+
+      return updatedCartItems;
+    });
+  };
+
   const onCheckOut = async (userFormData: UserFormData) => {
     console.log("UserFrom Data : ", userFormData);
 
@@ -146,6 +176,8 @@ const RestaurantDetailPage = () => {
             <OrderSummary
               restaurant={restaurant}
               cartItems={cartItems}
+              addToCart={addToCart}
+              decreseMenuItemQuantity={decreseMenuItemQuantity}
               removeFromCart={removeFromCart}
             />
             <CardFooter>

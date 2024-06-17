@@ -8,10 +8,18 @@ import { CircleMinus, CirclePlus, Trash } from "lucide-react";
 type Props = {
   restaurant: Restaurant;
   cartItems: CartItem[];
+  addToCart: (cartItem: CartItem) => void; // Update type of addToCart
+  decreseMenuItemQuantity: (cartItem: CartItem) => void;
   removeFromCart: (cartItem: CartItem) => void;
 };
 
-const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
+const OrderSummary = ({
+  restaurant,
+  cartItems,
+  addToCart,
+  decreseMenuItemQuantity,
+  removeFromCart,
+}: Props) => {
   const getTotalCost = () => {
     const totalPrice = cartItems.reduce(
       (total, cartItem) => total + cartItem.price * cartItem.quantity,
@@ -33,11 +41,19 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
       <CardContent className="flex flex-col gap-5">
         {cartItems.map((item) => (
           <div className="flex justify-between" key={item._id}>
-            <span className="flex gap-3">
+            <span className="flex gap-3 items-center">
               <span className="flex gap-1">
-                <CircleMinus className="text-gray-400 hover:text-black cursor-pointer" />
+                <CircleMinus
+                  size={22}
+                  className="text-gray-400 hover:text-black cursor-pointer"
+                  onClick={() => decreseMenuItemQuantity(item)}
+                />
                 <Badge variant="outline">{item.quantity}</Badge>
-                <CirclePlus className="text-gray-400 hover:text-black cursor-pointer" />
+                <CirclePlus
+                  size={22}
+                  className="text-gray-400 hover:text-black cursor-pointer"
+                  onClick={() => addToCart(item)}
+                />
               </span>
               <span>{item.name}</span>
             </span>
