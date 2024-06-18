@@ -5,6 +5,7 @@ import SearchBar, { SearchForm } from "@/components/SearchBar";
 import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultInfo";
 import SortOptionDropdown from "@/components/SortOptionDropdown";
+import SearchPageSkeleton from "@/skeletonLoading/SearchPageSkeleton";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -36,6 +37,7 @@ const SearchPage = () => {
       page: 1,
     }));
   };
+
   // Set the cuisines
   const setSelectedCuisines = (selectedCuisines: string[]) => {
     setSearchState((prevState) => ({
@@ -69,8 +71,9 @@ const SearchPage = () => {
       page: 1,
     }));
   };
+
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <SearchPageSkeleton/>;
   }
 
   if (!results?.data || !city) {

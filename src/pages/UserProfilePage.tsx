@@ -1,12 +1,13 @@
 import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi";
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm";
+import UserProfilePageSkeletonLoader from "@/skeletonLoading/UserProfilePageSkeletonLoader";
 
 const UserProfilePage = () => {
   const { currentUser, isLoading: isGetLoading } = useGetMyUser();
   const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
 
-  if (isGetLoading) {
-    return <span>Loading...</span>;
+  if (isGetLoading || isUpdateLoading) {
+    return <UserProfilePageSkeletonLoader />;
   }
 
   if (!currentUser) {

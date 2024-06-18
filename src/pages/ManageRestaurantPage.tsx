@@ -7,6 +7,7 @@ import {
 import OrderItemCard from "@/components/OrderItemCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ManageRestaurantForm from "@/forms/manage-restaurant-form/ManageRestaurantForm";
+import ManageRestaurantFormSkeleton from "@/skeletonLoading/ManageRestaurantFormSkeleton";
 import { TabsContent } from "@radix-ui/react-tabs";
 
 const ManageRestaurantPage = () => {
@@ -17,6 +18,10 @@ const ManageRestaurantPage = () => {
     useUpdateMyRestaurant();
 
   const { orders } = useGetMyRestaurantOrders();
+
+  if (isCreateLoading || isUpdateLoading) {
+    return <ManageRestaurantFormSkeleton />;
+  }
 
   const isEditing = !!restaurant;
 

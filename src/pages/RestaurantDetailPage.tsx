@@ -7,6 +7,7 @@ import RestaurantMenuItem from "@/components/RestaurantMenuItem";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardFooter } from "@/components/ui/card";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
+import RestaurantDetailSkeleton from "@/skeletonLoading/RestaurantDetailPageSkeleton";
 import { MenuItem } from "@/types";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -144,7 +145,7 @@ const RestaurantDetailPage = () => {
   };
 
   if (isLoading || !restaurant) {
-    return "Loading...";
+    return <RestaurantDetailSkeleton/>;
   }
 
   return (
