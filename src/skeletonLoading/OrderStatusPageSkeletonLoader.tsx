@@ -1,5 +1,3 @@
-import React from "react";
-
 const OrderStatusHeaderSkeleton = () => {
   return (
     <div className="space-y-4 bg-gray-50 rounded-lg p-10 animate-pulse">
